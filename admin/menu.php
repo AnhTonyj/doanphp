@@ -3,7 +3,7 @@
     <a href="index.php">
         <li>Tổng quan</li>
     </a>
-    <a href="manager_product.php">
+    <a href="sanpham.php">
         <li>Sản phẩm</li>
     </a>
     <a href="manager_loai_san_pham.php">
