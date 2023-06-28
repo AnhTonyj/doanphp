@@ -9,7 +9,7 @@
     <a href="manager_loai_san_pham.php">
         <li>Danh mục</li>
     </a>
-    <a href="manager_customer.php">
+    <a href="khachhang.php">
         <li>Khách hàng</li>
     </a>
     <a href="manager_invoice.php">

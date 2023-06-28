@@ -2,6 +2,7 @@
 require_once 'bkconnect.php';
 // Chức năng thêm mới
 if (isset($_POST["txtName"])) {
+    $masp = $_POST["txtMasp"];
     $malsp = $_POST["slLoaiSP"];
     $manh = $_POST["slNH"];
     $name = $_POST["txtName"];
@@ -10,7 +11,12 @@ if (isset($_POST["txtName"])) {
     $gianhap = $_POST["txtGianhap"];
     $giacu = $_POST["txtGiacu"];
     $giamoi = $_POST["txtGiamoi"];
+    $luotxem = $_POST["nbluotxem"];
+    $ngaycapnhat = $_POST["txtDate"];
     $status = $_POST["chkStatus"];
+    $sql = "INSERT INTO `san_pham`(`MaSP`, `Ten_sp`, `Mo_ta`, `Thong_tin`, `Gia_nhap`, `Gia_cu`, `Gia_moi`, `Luot_xem`, `Ngay_cap_nhat`, `Trang_thai`, `MaLSP`, `MaNH`) 
+    VALUES ('$masp','$name','$mota','$thongtin','$gianhap','$giacu','$giamoi','$luotxem','$ngaycapnhat','$status','$malsp','$manh')";
+    $isOk = insertOrUpdate($sql);
 }
 ?>
 
@@ -74,6 +80,10 @@ if (isset($_POST["txtName"])) {
                             ?>
                         </select>
                     </td>
+                </tr>
+                <tr>
+                    <td>Mã sản phẩm</td>
+                    <td><input type="text" name="txtMasp" id="txtMasp"></td>
                 </tr>
                 <tr>
                     <td>Tên nhãn hiệu </td>
@@ -154,29 +164,32 @@ if (isset($_POST["txtName"])) {
 
         </form>
 
-        <table border="1">
-            <tr>
-                <td>Mã sản phẩm </td>
-                <td>Tên sản phẩm</td>
-                <td>Mô tả</td>
-                <td>Thông tin</td>
-                <td>Giá nhập</td>
-                <td>Giá cũ</td>
-                <td>Giá mới</td>
-                <td>Lượt xem</td>
-                <td>Ngày cập nhật</td>
-                <td>Trạng thái</td>
-                <td>Mã loại sản phẩm </td>
-                <td>Mã nhãn hiệu</td>
-                <td>Cập nhật</td>
-                <td>Xóa</td>
-            </tr>
-            <!-- Truy vấn csdl lấy toàn bộ sản phẩm -->
-            <?php
-            $sql = "SELECT * FROM `san_pham`";
-            $arrProduct = selectData($sql);
-            foreach ($arrProduct as $item) {
-                echo "<tr>
+        <table border="1" class="table-content">
+            <thead>
+                <tr>
+                    <th>Mã sản phẩm </th>
+                    <th>Tên sản phẩm</th>
+                    <th>Mô tả</th>
+                    <th>Thông tin</th>
+                    <th>Giá nhập</th>
+                    <th>Giá cũ</th>
+                    <th>Giá mới</th>
+                    <th>Lượt xem</th>
+                    <th>Ngày cập nhật</th>
+                    <th>Trạng thái</th>
+                    <th>Mã loại sản phẩm </th>
+                    <th>Mã nhãn hiệu</th>
+                    <th>Cập nhật</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Truy vấn csdl lấy toàn bộ sản phẩm -->
+                <?php
+                $sql = "SELECT * FROM `san_pham`";
+                $arrProduct = selectData($sql);
+                foreach ($arrProduct as $item) {
+                    echo "<tr>
                     <td>" . $item["MaSP"] . "</td>
                     <td>" . $item["Ten_sp"] . "</td>
                     <td>" . $item["Mo_ta"] . "</td>
@@ -192,8 +205,10 @@ if (isset($_POST["txtName"])) {
                     <td><a href=\"\"><img src=\"../images/ic_edit.png\" alt=\"\"></a></td>
                     <td><a href=\"\"><img src=\"../images/ic_delete.png\" alt=\"\"></a></td>
                 </tr>";
-            }
-            ?>
+                }
+                ?>
+            </tbody>
+
 
         </table>
     </div>
